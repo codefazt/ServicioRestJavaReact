@@ -50,6 +50,14 @@ public class Rest {
 		else
 			return ResponseEntity.ok(image.get());
 	}
+	
+
+	@RequestMapping(value="image/", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> setImage(@RequestBody Image image) {
+		imageDao.save(image);
+		
+		return ResponseEntity.ok(true);
+	}
 
 	@RequestMapping(value="message", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> setMessage(@RequestBody Message message){
