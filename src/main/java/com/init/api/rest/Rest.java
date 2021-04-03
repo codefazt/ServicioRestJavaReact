@@ -58,6 +58,18 @@ public class Rest {
 		
 		return ResponseEntity.ok(true);
 	}
+	
+	@RequestMapping(value="image/", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> updateImage(@RequestBody Image image) {
+		
+		Optional<Image> imageID = imageDao.findById(image.getId());
+		
+		if(!imageID.isPresent()) return ResponseEntity.notFound().build();
+		
+		imageDao.save(image);
+		
+		return ResponseEntity.ok(true);
+	}
 
 	@RequestMapping(value="message", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> setMessage(@RequestBody Message message){
